@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+    <style>
+        /* Your tracking page styles go here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(196, 161, 135, 1);
+        }
+
+        h2, h3, p {
+            margin: 0;
+        }
+
+        label {
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input {
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .result-container {
+            margin-top: 20px;
+        }
+
+        .check-mark {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h2>Track Order</h2>
+    <label for="orderId">Enter Order ID:</label>
+    <input type="text" id="orderId">
+    <button onclick="trackOrder()">Track Order</button>
+    <div id="result-container" class="result-container"></div>
+
+    <script>
+        function trackOrder() {
+            // Simulate API call
+            setTimeout(function () {
+                var response = {
+                    status: 'Processing',
+                    estimatedDeliveryTime: '30 minutes',
+                    orderNumber: '12345'
+                };
+
+                var orderStatus = response.status;
+                var estimatedDeliveryTime = response.estimatedDeliveryTime;
+                var orderNumber = response.orderNumber;
+
+                // Display result
+                var resultContainer = document.getElementById('result-container');
+                resultContainer.innerHTML = `
+                    <h3>Estimated Delivery Time</h3>
+                    <p>${estimatedDeliveryTime}</p>
+                    <h3>Order Confirmation</h3>
+                    <p>The restaurant is processing your order. Order number: ${orderNumber}</p>
+                `;
+
+                // Display check mark for delivered orders
+                if (orderStatus === 'Delivered') {
+                    var checkMark = document.createElement('div');
+                    checkMark.className = 'check-mark';
+                    checkMark.innerHTML = '✅';
+                    resultContainer.appendChild(checkMark);
+                }
+            }, 1000); // Simulate delay for API call
+        }
+  </script>
+</body>
+</html>
